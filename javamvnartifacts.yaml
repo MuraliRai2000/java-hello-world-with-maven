@@ -1,0 +1,28 @@
+- hosts: all
+  become_user: root
+  become_method: sudo
+  become: yes
+
+  vars:
+    java_redhat_openjdk_packages:
+      8:
+        - java-1.8.0-openjdk
+        - ca-certificates
+
+  tasks:
+    - name: install open jdk
+      yum:
+        name: "{{ item }}"
+        update_cache: yes
+        state: latest
+      when: ansible_distribution=="RedHat"
+      loop:
+        - "{{ java_redhat_openjdk_packages[java_version] }}"
+    - name: copy mvn artifacts
+      copy:
+        src: target/*.jar
+        dest: files
+    - name: run java command
+      shell: "java - jar files/*.jar > javarunoutputlogs.txt"
+
+
