@@ -19,11 +19,11 @@
         - "{{ java_redhat_openjdk_packages }}"
     - name: env lookup
       command: echo "{{ lookup('env','JOB_NAME') }}"
-      register: env-var
+      register: envsvar
     - name: find artifacts
       find:
         paths:
-          - /var/lib/jenkins/workspace/"{{env-var}}"
+          - /var/lib/jenkins/workspace/"{{envsvar}}"
         patterns:
           - "*.jar"
         file_type: file
