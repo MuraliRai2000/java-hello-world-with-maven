@@ -1,21 +1,38 @@
 pipeline{
     agent any
-
-    tools {
-         maven 'maven'
-         jdk 'java'
-    }
-
     stages{
-        stage('checkout'){
+        stage("Build"){
             steps{
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'github access', url: 'https://github.com/sreenivas449/java-hello-world-with-maven.git']]])
+                sh 'cd SimpleSpringBoot'
             }
         }
-        stage('build'){
+        stage("Setup Env"){
             steps{
-               bat 'mvn package'
+                sh "sudo apt-update"
             }
         }
+        stage("Deploy"){
+            steps{
+                sh "cd SimpleSpringBoot && cp build/* /files"
+            }
+        }
+        
     }
+   // post{
+        // success{
+        //     archiveArtifacts artifacts: '**/build', followSymlinks: false
+        // }
+        // failure{
+        //     emailext body: '''Jenkins has failed to build the Job. Please find the information below.
+
+        //                     Name of the Job: ${JOB_NAME}
+        //                     Build that failed: ${BUILD_NUMBER}
+
+        //                     Please check the logs at ${BUILD_URL}
+
+
+        //                     Thanks
+        //                     Jenkins''', subject: 'Failed ${JOB_NAME}', to: 'basil@coit.io'
+        // }
+   // }
 }
