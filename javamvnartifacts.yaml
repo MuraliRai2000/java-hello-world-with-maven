@@ -19,7 +19,7 @@
         - "{{ java_redhat_openjdk_packages }}"
     - name: env lookup
       - command: echo "{{ lookup('env','JOB_NAME') }}"
-    register: env-var
+      register: env-var
     - name: find artifacts
       find:
         paths:
