@@ -23,7 +23,7 @@
     - name: find artifacts
       find:
         paths:
-          - /var/lib/jenkins/workspace/"{{envsvar}}"
+          - /var/lib/jenkins/workspace/"{{lookup('env','JOB_NAME')}}"
         patterns:
           - "*.jar"
         file_type: file
