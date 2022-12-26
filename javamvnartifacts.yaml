@@ -20,7 +20,7 @@
     - name: find artifacts
       find:
         paths:
-          - /tmp/abc
+          - /var/lib/jenkins/workspace
         patterns:
           - "*.jar"
         file_type: file
