@@ -25,7 +25,7 @@
           - "*.jar"
         file_type: file
         recurse: no
-        register: jarfiles
+      register: jarfiles
     - name: copy mvn artifacts
       copy:
         src: "{{ (jarfiles.files | first).path }}"
