@@ -28,7 +28,7 @@
         register: jarfiles
     - name: copy mvn artifacts
       copy:
-        src: {{ (jarfiles.files | first).path }}
+        src: "{{ (jarfiles.files | first).path }}"
         dest: /files/
       when: ansible_distribution=="RedHat"
     - name: run java command
