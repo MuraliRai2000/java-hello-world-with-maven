@@ -4,6 +4,7 @@ pipeline{
         stage("Build"){
             steps{
                 sh 'cd SimpleSpringBoot'
+                sh 'printenv'
             }
         }
         stage("Setup Env"){
