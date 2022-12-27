@@ -31,11 +31,11 @@
 #      register: jarfiles
     - name: copy mvn artifacts
       copy:
-        src: /var/lib/jenkins/workspace/{{lookup('env','JOB_NAME')}}/*.jar
+        src: /var/lib/jenkins/workspace/{{lookup('env','JOB_NAME')}}/target/*.jar
         dest: /files/
       when: ansible_distribution=="RedHat"
     - name: run java command
-      shell: "java - jar /files/*.jar > javarunoutputlogs.txt"
+      shell: "java - jar /files/{{lookup('env','JOB_NAME')}}/**/*.jar >> javarunoutputlogs.txt"
       when: ansible_distribution=="RedHat"
 
 
