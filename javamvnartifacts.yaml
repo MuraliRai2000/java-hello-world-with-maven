@@ -30,7 +30,7 @@
 #        recurse: no
 #      register: jarfiles
     - name: copy mvn artifacts
-      synchronize:
+      copy:
         src: /var/lib/jenkins/workspace/{{lookup('env','JOB_NAME')}}/target/*.jar
         dest: /files/
       when: ansible_distribution=="RedHat"
