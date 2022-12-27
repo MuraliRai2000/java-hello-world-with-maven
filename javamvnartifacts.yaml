@@ -31,7 +31,7 @@
 #      register: jarfiles
     - name: copy mvn artifacts
       copy:
-        src: {{lookup('env','JOB_NAME')}}/target/*.jar
+        src: "{{lookup('env','JOB_NAME')}}"/target/*.jar
         dest: /files/
       when: ansible_distribution=="RedHat"
     - name: run java command
