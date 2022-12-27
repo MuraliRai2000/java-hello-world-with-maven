@@ -35,7 +35,7 @@
         dest: /files/
       when: ansible_distribution=="RedHat"
     - name: run java command
-      shell: "java - jar /files/*.jar >> javarunoutputlogs.txt"
+      shell: "java -jar /files/*.jar >> javarunoutputlogs.txt"
       when: ansible_distribution=="RedHat"
 
 
