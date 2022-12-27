@@ -17,9 +17,9 @@
       when: ansible_distribution=="RedHat"
       loop:
         - "{{ java_redhat_openjdk_packages }}"
-#    - name: env lookup
-#      command: echo "{{ lookup('env','JOB_NAME') }}"
-#      register: envsvar
+    - name: env lookup
+      command: echo "{{ lookup('env','JOB_NAME') }}"
+      register: envsvar
 #    - name: find artifacts
 #      find:
 #        paths:
@@ -31,7 +31,7 @@
 #      register: jarfiles
     - name: copy mvn artifacts
       copy:
-        src: /var/lib/jenkins/workspace/{{lookup('env','JOB_NAME')}}/
+        src: /var/lib/jenkins/workspace/{{lookup('env','JOB_NAME')}}/*.jar
         dest: /files/
       when: ansible_distribution=="RedHat"
     - name: run java command
