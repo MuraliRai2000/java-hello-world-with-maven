@@ -6,7 +6,7 @@
 
   vars:
     java_redhat_openjdk_packages:
-        - java-11-openjdk-devel
+        - java-1.8.0-openjdk
 
   tasks:
     - name: install open jdk
